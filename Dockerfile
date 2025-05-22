@@ -16,9 +16,13 @@ WORKDIR /src
 
 # 自动克隆源码
 RUN git clone --recursive https://github.com/usqcd-software/qmp.git && \
-    git clone --recursive https://github.com/usqcd-software/qdpxx.git && git checkout devel && \
-    git clone --recursive https://github.com/JeffersonLab/chroma.git && git checkout devel
-
+    git clone --recursive https://github.com/usqcd-software/qdpxx.git && \
+    git -C qdpxx checkout devel && \
+    git -C qdpxx submodule update --init --recursive && \
+    git clone --recursive https://github.com/JeffersonLab/chroma.git && \
+    git -C chroma checkout devel && \
+    git -C chroma submodule update --init --recursive
+    
 # 编译脚本
 COPY build.sh /src
 RUN chmod +x ./build.sh && \
