@@ -16,8 +16,8 @@ WORKDIR /src
 
 # 自动克隆源码
 RUN git clone --recursive https://github.com/usqcd-software/qmp.git && \
-    git clone --recursive https://github.com/usqcd-software/qdpxx.git && \
-    git clone --recursive https://github.com/JeffersonLab/chroma.git
+    git clone --recursive https://github.com/usqcd-software/qdpxx.git && git checkout devel && \
+    git clone --recursive https://github.com/JeffersonLab/chroma.git && git checkout devel
 
 # 编译脚本
 COPY build.sh /src
